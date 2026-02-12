@@ -1,14 +1,15 @@
-# Utilisation d'Eclipse Temurin qui est l'image recommandée actuellement
+# On utilise une image plus récente et stable
 FROM eclipse-temurin:17-jdk-alpine
 
-# Dossier de travail
+# On définit le dossier de travail
 WORKDIR /app
 
-# Copie du fichier JAR (assure-toi d'avoir fait 'mvn clean package' avant)
+# On copie le fichier JAR généré par Maven
+# Assure-toi d'avoir fait un 'mvn clean package' avant !
 COPY target/*.jar app.jar
 
-# Port exposé
+# On expose le port 8080
 EXPOSE 8080
 
-# Commande de lancement
+# Commande pour lancer l'application
 ENTRYPOINT ["java", "-jar", "app.jar"]
