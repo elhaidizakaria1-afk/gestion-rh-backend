@@ -1,12 +1,14 @@
-# 1. On part d'une image Linux avec Java 17 installé
-FROM openjdk:17-jdk-slim
+# Utilisation d'Eclipse Temurin qui est l'image recommandée actuellement
+FROM eclipse-temurin:17-jdk-alpine
 
-# 2. On copie le fichier JAR généré par Maven vers le conteneur
-# Assurez-vous que le nom du jar correspond (utilisez un joker *)
+# Dossier de travail
+WORKDIR /app
+
+# Copie du fichier JAR (assure-toi d'avoir fait 'mvn clean package' avant)
 COPY target/*.jar app.jar
 
-# 3. On ouvre le port 8080
+# Port exposé
 EXPOSE 8080
 
-# 4. La commande pour lancer l'app
-ENTRYPOINT ["java","-jar","/app.jar"]
+# Commande de lancement
+ENTRYPOINT ["java", "-jar", "app.jar"]
