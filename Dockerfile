@@ -1,15 +1,14 @@
-# On utilise une image plus récente et stable
+# Image stable et certifiée pour Java 17
 FROM eclipse-temurin:17-jdk-alpine
 
-# On définit le dossier de travail
+# Dossier où l'application va vivre
 WORKDIR /app
 
-# On copie le fichier JAR généré par Maven
-# Assure-toi d'avoir fait un 'mvn clean package' avant !
+# On copie le fichier JAR (généré par Maven) dans l'image
 COPY target/*.jar app.jar
 
-# On expose le port 8080
+# On indique le port utilisé par Spring Boot
 EXPOSE 8080
 
-# Commande pour lancer l'application
+# Commande pour démarrer l'application
 ENTRYPOINT ["java", "-jar", "app.jar"]
