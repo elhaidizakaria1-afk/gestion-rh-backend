@@ -31,6 +31,14 @@ public class Technicien extends Employe implements PerformanceEvaluator{
         return indemniteRisque;
     }
 
+    public double getNote() {
+        return note;
+    }
+
+    public void setNote(double note) {
+        this.note = note;
+    }
+
     // Redefinition de la methode calculerSalaireNet() :
     @Override
     public double calculerSalaireNet(){
@@ -39,8 +47,11 @@ public class Technicien extends Employe implements PerformanceEvaluator{
 
     // Redefinition de la methode abstract evaluerPerformance() de l'interface evaluerPerformance
     @Override
-    public int evaluerPerformance(int note) {
-        System.out.println("Performance évaluée pour le Technicien: " + note);
-        return note;
+    public int evaluerPerformance(int noteSaisie) {
+        // C'est cette ligne qui enregistre la note dans l'objet Java !
+        this.note = noteSaisie;
+
+        System.out.println("Performance évaluée pour le Technicien: " + this.note);
+        return noteSaisie;
     }
 }

@@ -10,6 +10,7 @@ import jakarta.persistence.Table;
 @Table(name = "managers")
 public class Manager extends Employe implements PerformanceEvaluator{
     private double primeAnnuelle;
+    private double note;
 
     // Constructeur par defaut
     public Manager() {
@@ -32,6 +33,14 @@ public class Manager extends Employe implements PerformanceEvaluator{
         return primeAnnuelle;
     }
 
+    public double getNote() {
+        return note;
+    }
+
+    public void setNote(double note) {
+        this.note = note;
+    }
+
     // Redefinition de la methode calculerSalaireNet() :
     @Override
     public double calculerSalaireNet(){
@@ -40,8 +49,10 @@ public class Manager extends Employe implements PerformanceEvaluator{
 
     // Redefinition de la methode abstract evaluerPerformance() de l'interface evaluerPerformance
     @Override
-    public int evaluerPerformance(int note) {
+    public int evaluerPerformance(int noteSaisie) {
+        // C'est cette ligne qui enregistre la note dans l'objet Java !
+        this.note = noteSaisie;
         System.out.println("Performance évaluée pour le Manager: " + note);
-        return note;
+        return noteSaisie;
     }
 }
